@@ -29,7 +29,7 @@ services:
       DB_PORT: ${DB_PORT}
       PORT: ${PORT}
       HOST: ${HOST}
-    command: ["/app/wait-for-db.sh", "npm", "start"]
+    command: ["/backend/wait-for-db.sh", "npm", "start"]
 
   frontend: 
     build: ./frontend
