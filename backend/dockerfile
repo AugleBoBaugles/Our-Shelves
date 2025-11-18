@@ -12,8 +12,6 @@ COPY . .
 
 RUN chmod +x wait-for-db.sh
 
-RUN ls -al /backend 
-
 EXPOSE 3000
 
 CMD ["npm", "start"]
