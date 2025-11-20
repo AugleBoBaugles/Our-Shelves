@@ -15,6 +15,10 @@ A reading tracker web application that allows users to search for books using th
 **Sprint 4:**
 - Tav
 - Tia
+
+**Sprint 5:**
+- Augy
+- Rebecca
 ---
 
 ## Project Description
