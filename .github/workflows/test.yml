@@ -12,7 +12,9 @@ jobs:
 
         steps:
             - name: Logging Fake Test
-              run: echo "Fake Test"
+              run: |
+                echo "Fake Test"
+                false # artificial failing test to check merge blocking
     backend-unit-tests:
         runs-on: ubuntu-latest
 
