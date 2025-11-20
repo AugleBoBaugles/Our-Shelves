@@ -28,7 +28,7 @@ jobs:
             - name: Run tests
               run: |
                 cd backend
-                npm run test:watch
+                npm run test
 
     frontend-unit-tests:
         runs-on: ubuntu-latest
