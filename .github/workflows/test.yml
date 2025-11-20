@@ -3,6 +3,8 @@ name: CI Pipeline
 on:
     push:
         branches: [ main, dev, ci]
+    pull_request:
+        branches: [ main ]
 
 jobs:
     faketest:
@@ -12,3 +14,22 @@ jobs:
 
             - name: Logging Fake Test
               run: echo "Fake Test"
+    backend-unit-tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Install dependencies 
+              run: |
+                cd backend
+                npm ci
+
+            - name: Run tests
+              run: npm test
+
+    frontend-unit-tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
