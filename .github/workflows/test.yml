@@ -63,6 +63,7 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
+
             - name: Build and start all services
               run: docker compose up -d --build
 
@@ -74,10 +75,14 @@ jobs:
                 timeout 60 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
               
             - name: Install Depencies
-              run: npm ci
-
+              run: |
+                cd frontend
+                npm ci
+        
             - name: Run E2E tests
-              run: npx cypress run
+              run: |
+                cd frontend
+                npx cypress run
 
             - name: Stop services
               if: always()
