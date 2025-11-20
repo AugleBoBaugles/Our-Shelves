@@ -22,12 +22,12 @@ jobs:
 
             - name: Install dependencies 
               run: |
-                cd backend
+                cd backend/
                 npm ci
 
             - name: Run tests
               run: |
-                cd backend
+                cd backend/
                 npm test:watch
 
     frontend-unit-tests:
