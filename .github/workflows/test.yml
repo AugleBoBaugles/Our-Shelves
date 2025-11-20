@@ -27,7 +27,7 @@ jobs:
 
             - name: Run tests
               run: |
-                npm run
+                cd backend
                 npm test:watch
 
     frontend-unit-tests:
