@@ -43,3 +43,21 @@ jobs:
               run: |
                 cd frontend
                 npm run test
+
+    integration-tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install dependencies
+              run: |
+                cd backend
+                npm ci
+
+            - name: Run tests
+              run: |
+                cd backend
+                npm run test:integration
+                
+    e2e-test:
+        runs-on: ubuntu-latest
