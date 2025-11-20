@@ -35,3 +35,11 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
+            - name: Install dependencies
+              run: |
+                cd frontend
+                npm ci
+            - name: Run tests
+              run: |
+                cd frontend
+                npm run test
