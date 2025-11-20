@@ -1,0 +1,14 @@
+name: CI Pipeline
+
+on:
+    push:
+        branches: [ main, dev, ci]
+
+jobs:
+    faketest:
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - name: Logging Fake Test
+              run: echo "Fake Test"
