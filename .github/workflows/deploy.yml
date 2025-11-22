@@ -21,4 +21,8 @@ jobs:
                 username: ${{ secrets.VM_USERNAME }}
                 password: ${{ secrets.VM_PASSWORD }}
                 script: |
+                    echo "CONNECTED!"
+                    hostname
+                    pwd
+                    ls -la
                     touch augywashere.txt
