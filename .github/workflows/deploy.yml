@@ -11,5 +11,14 @@ jobs:
         if: ${{ github.event.workflow_run.conclusion == 'success'}}
         runs-on: ubuntu-latest
 
+        steps:
+            - uses: actions/checkout@v3
 
-        
+            - name: Deploy to Digital Ocean VM
+              uses: appleboy/ssh-action@v1.0.0
+              with:
+                host: ${{ secrets.VM_HOST }}
+                username: ${{ secrets.VM_USERNAME }}
+                password: ${{ secrets.VM_PASSWORD }}
+                script: |
+                    touch augywashere.txt
