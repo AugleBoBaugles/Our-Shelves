@@ -30,6 +30,10 @@ jobs:
                 host: ${{ secrets.VM_HOST }}
                 username: ${{ secrets.VM_USERNAME }}
                 password: ${{ secrets.VM_PASSWORD }}
+
+                timeout: 60
+                command_timeout: 1800
+                
                 envs: MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE,DB_PORT,PORT,HOST,VITE_API_URL
                 script: |
                     set -xe
