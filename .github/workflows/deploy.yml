@@ -25,7 +25,7 @@ jobs:
                 script: |
                     echo "CONNECTED!"
 
-                    cd /Our-Shelves || mkdir -p /Our-Shelves && cd /Our-Shelves 
+                    cd /OurShelves || mkdir -p /OurShelves && cd /OurShelves 
 
                     if [ -d ".git"]; then
                       git pull origin main
