@@ -42,7 +42,7 @@ jobs:
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
                     fi
 
-                    cd /Our-Shelves
+                    cd /home/OurShelves/Our-Shelves
                     cat > .env <<EOF
                     MYSQL_USER=$MYSQL_USER
                     MYSQL_PASSWORD=$MYSQL_PASSWORD
