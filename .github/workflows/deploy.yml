@@ -53,3 +53,11 @@ jobs:
                     VITE_API_URL=$VITE_API_URL
                     EOF
 
+                    docker compose down
+                    docker compose up -d --build
+
+                    timeout 60 bash -c 'until curl -sf http://localhost:5173; do sleep 2; done'
+
+                    docker compose ps
+                    docker image prune -f
+
