@@ -32,16 +32,19 @@ jobs:
                 password: ${{ secrets.VM_PASSWORD }}
                 envs: MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE,DB_PORT,PORT,HOST,VITE_API_URL
                 script: |
-                    echo "CONNECTED!"
+                    set -xe
 
+                    echo "Ensure /home/OurShelves esists"
                     cd /home/OurShelves || mkdir -p /home/OurShelves && cd /home/OurShelves 
 
+                    echo "Pull or clone repo"
                     if [ -d ".git" ]; then
                       git pull origin main
                     else
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
                     fi
 
+                    echo "Write .env file"
                     cd /home/OurShelves/Our-Shelves
                     cat > .env <<EOF
                     MYSQL_USER=$MYSQL_USER
@@ -53,11 +56,16 @@ jobs:
                     VITE_API_URL=$VITE_API_URL
                     EOF
 
+                    echo "Ensure docker is closed, then open Docker"
                     docker compose down
                     docker compose up -d --build
 
+                    echo "Wait for frontend"
                     timeout 60 bash -c 'until curl -sf http://localhost:5173; do sleep 2; done'
 
+                    echo "Sanity check which images are running, prune images"
                     docker compose ps
                     docker image prune -f
+
+                    echo "Done!"
 
