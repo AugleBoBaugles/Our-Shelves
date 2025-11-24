@@ -79,8 +79,8 @@ jobs:
                 username: ${{ secrets.VM_USERNAME }}
                 password: ${{ secrets.VM_PASSWORD }}
               script: |
-                echo "Sanity check which images are running, prune images"
-                docker compose ps
-                docker image prune -f
+                  echo "Sanity check which images are running, prune images"
+                  docker compose ps
+                  docker image prune -f
 
 
