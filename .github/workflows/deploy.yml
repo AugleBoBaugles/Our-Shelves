@@ -24,7 +24,12 @@ jobs:
                 password: ${{ secrets.VM_PASSWORD }}
                 script: |
                     echo "CONNECTED!"
-                    hostname
-                    pwd
-                    ls -la
-                    touch augywashere.txt
+
+                    cd /Our-Shelves || mkdir -p /Our-Shelves && cd /Our-Shelves 
+
+                    if [ -d ".git"]; then
+                      git pull origin main
+                    else
+                      git clone https://github.com/AugleBoBaugles/Our-Shelves.git
+                    fi
+
