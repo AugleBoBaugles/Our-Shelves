@@ -14,7 +14,8 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
+            - name: Checkout code
+              uses: actions/checkout@v3
 
             - name: Deploy to Digital Ocean VM
               uses: appleboy/ssh-action@v1.0.0
@@ -30,15 +31,13 @@ jobs:
                 host: ${{ secrets.VM_HOST }}
                 username: ${{ secrets.VM_USERNAME }}
                 password: ${{ secrets.VM_PASSWORD }}
-
-                timeout: 60s
-                command_timeout: 30m
-                
+                timeout: 60s  
+                command_timeout: 30m 
                 envs: MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE,DB_PORT,PORT,HOST,VITE_API_URL
                 script: |
                     set -xe
 
-                    echo "Ensure /home/OurShelves esists"
+                    echo "Ensure /home/OurShelves exists"
                     cd /home/OurShelves || { mkdir -p /home/OurShelves && cd /home/OurShelves; }
 
                     echo "Pull or clone repo"
@@ -71,9 +70,17 @@ jobs:
                     echo "Wait for frontend"
                     timeout 60 bash -c 'until curl -sf http://localhost:5173; do sleep 2; done'
 
-                    echo "Sanity check which images are running, prune images"
-                    docker compose ps
-                    docker image prune -f
-
                     echo "Done!"
+
+            - name: Verify deployment
+              uses: appleboy/ssh-action@v1.0.0
+              with:
+                host: ${{ secrets.VM_HOST }}
+                username: ${{ secrets.VM_USERNAME }}
+                password: ${{ secrets.VM_PASSWORD }}
+              script: |
+                echo "Sanity check which images are running, prune images"
+                docker compose ps
+                docker image prune -f
+
 
