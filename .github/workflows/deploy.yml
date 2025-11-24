@@ -47,10 +47,10 @@ jobs:
                       echo "Repo does not exist, cloning"
                       rm -rf Our-Shelves 
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
+                      cd Our-Shelves
                     fi
 
                     echo "Write .env file"
-                    cd /home/OurShelves/Our-Shelves
                     cat > .env <<EOF
                     MYSQL_USER=$MYSQL_USER
                     MYSQL_PASSWORD=$MYSQL_PASSWORD
@@ -76,9 +76,10 @@ jobs:
                 host: ${{ secrets.VM_HOST }}
                 username: ${{ secrets.VM_USERNAME }}
                 password: ${{ secrets.VM_PASSWORD }}
-              script: |
-                  echo "Sanity check which images are running, prune images"
-                  docker compose ps
-                  docker image prune -f
+                script: |
+                    echo "Sanity check which images are running, prune images"
+                    cd /home/OurShelves/Our-Shelves
+                    docker compose ps
+                    docker image prune -f
 
 
