@@ -35,12 +35,16 @@ jobs:
                     set -xe
 
                     echo "Ensure /home/OurShelves esists"
-                    cd /home/OurShelves || mkdir -p /home/OurShelves && cd /home/OurShelves 
+                    cd /home/OurShelves || { mkdir -p /home/OurShelves && cd /home/OurShelves; }
 
                     echo "Pull or clone repo"
-                    if [ -d ".git" ]; then
+                    if [ -d "Our-Shelves/.git" ]; then
+                      echo "Repo exists, pulling latest"
+                      cd Our-Shelves
                       git pull origin main
                     else
+                      echo "Repo does not exist, cloning"
+                      rm -rf Our-Shelves 
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
                     fi
 
