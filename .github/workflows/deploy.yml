@@ -18,6 +18,14 @@ jobs:
 
             - name: Deploy to Digital Ocean VM
               uses: appleboy/ssh-action@v1.0.0
+              env:
+                MYSQL_USER: ${{ secrets.MYSQL_USER }}
+                MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD}}
+                MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE}}
+                DB_PORT: ${{ secrets.DB_PORT }}
+                PORT: ${{ secrets.PORT }}
+                HOST: ${{ secrets.HOST}}
+                VITE_API_URL: http://${{secrets.HOST}}:${{secrets.PORT}}
               with:
                 host: ${{ secrets.VM_HOST }}
                 username: ${{ secrets.VM_USERNAME }}
@@ -32,4 +40,14 @@ jobs:
                     else
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
                     fi
+
+                    cat > .env <<EOF
+                    MYSQL_USER=$MYSQL_USER
+                    MYSQL_PASSWORD=$MYSQL_PASSWORD
+                    MYSQL_DATABASE=$MYSQL_DATABASE
+                    DB_PORT=$DB_PORT
+                    PORT=$PORT
+                    HOST=$HOST
+                    VITE_API_URL=$VITE_API_URL
+                    EOF
 
