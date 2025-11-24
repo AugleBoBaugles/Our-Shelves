@@ -25,9 +25,9 @@ jobs:
                 script: |
                     echo "CONNECTED!"
 
-                    cd /OurShelves || mkdir -p /OurShelves && cd /OurShelves 
+                    cd /home/OurShelves || mkdir -p /home/OurShelves && cd /home/OurShelves 
 
-                    if [ -d ".git"]; then
+                    if [ -d ".git" ]; then
                       git pull origin main
                     else
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
