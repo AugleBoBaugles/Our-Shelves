@@ -30,6 +30,7 @@ jobs:
                 host: ${{ secrets.VM_HOST }}
                 username: ${{ secrets.VM_USERNAME }}
                 password: ${{ secrets.VM_PASSWORD }}
+                envs: MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE,DB_PORT,PORT,HOST,VITE_API_URL
                 script: |
                     echo "CONNECTED!"
 
@@ -41,6 +42,7 @@ jobs:
                       git clone https://github.com/AugleBoBaugles/Our-Shelves.git
                     fi
 
+                    cd /Our-Shelves
                     cat > .env <<EOF
                     MYSQL_USER=$MYSQL_USER
                     MYSQL_PASSWORD=$MYSQL_PASSWORD
