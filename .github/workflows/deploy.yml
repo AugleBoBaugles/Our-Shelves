@@ -35,8 +35,6 @@ jobs:
                 command_timeout: 30m 
                 envs: MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE,DB_PORT,PORT,HOST,VITE_API_URL
                 script: |
-                    set -xe
-
                     echo "Ensure /home/OurShelves exists"
                     cd /home/OurShelves || { mkdir -p /home/OurShelves && cd /home/OurShelves; }
 
