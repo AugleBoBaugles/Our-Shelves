@@ -51,6 +51,7 @@ jobs:
                       cd Our-Shelves
                     fi
 
+                    dos2unix backend/wait-for-db.sh
                     echo "Write .env file"
                     cat > .env <<EOF
                     MYSQL_USER=$MYSQL_USER
