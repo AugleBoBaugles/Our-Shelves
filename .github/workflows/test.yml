@@ -58,30 +58,27 @@ jobs:
         steps:
             - uses: actions/checkout@v3
 
-            - name: FAKE test
-              run: echo "fake test"
+            - name: Build and start all services
+              run: docker compose up -d --build
 
-            # - name: Build and start all services
-            #   run: docker compose up -d --build
-
-            # - name: Wait for services to be ready
-            #   run: |
-            #     echo "Waiting for backend to be ready..."
-            #     timeout 60 bash -c 'until curl -f http://localhost:3000; do sleep 2; done'
-            #     echo "Waiting for frontend to be ready..."
-            #     timeout 60 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
+            - name: Wait for services to be ready
+              run: |
+                echo "Waiting for backend to be ready..."
+                timeout 60 bash -c 'until curl -f http://localhost:3000; do sleep 2; done'
+                echo "Waiting for frontend to be ready..."
+                timeout 60 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
               
-            # - name: Install Depencies
-            #   run: |
-            #     cd frontend
-            #     npm ci
+            - name: Install Depencies
+              run: |
+                cd frontend
+                npm ci
         
-            # - name: Run E2E tests
-            #   run: |
-            #     cd frontend
-            #     npx cypress run
+            - name: Run E2E tests
+              run: |
+                cd frontend
+                npx cypress run
 
-            # - name: Stop services
-            #   if: always()
-            #   run: docker compose down
+            - name: Stop services
+              if: always()
+              run: docker compose down
 
