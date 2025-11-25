@@ -2,6 +2,22 @@
 
 A reading tracker web application that allows users to search for books using the **Open Library API**, save them to their personal digital shelf, and manage their book collection.
 
+**Contents**
+1. [Team Members](#team-members)
+1. [Project Description](#project-description)
+1. [Tech Stack](#tech-stack)
+1. [Prerequisites](#prerequisites)
+1. [Environment Variables](#environment-variables)
+1. [Local Development Setup](#local-development-setup)
+1. [Testing Strategy](#testing-strategy)
+1. [Running the Application (Local)](#running-the-application-local)
+1. [Deployment Instructions (Ubuntu + Docker)](#deployment-instructions-ubuntu--docker)
+1. [Automated Testing and Deployment](#automated-testing-and-deployment)
+1. [Api Endpoints](#api-endpoints)
+1. [Useful Commands](#useful-commands)
+1. [Troubleshooting Tips](#troubleshooting-tips)
+1. [License](#license)
+
 ## Team Members
 
 **Sprint 1/2:**
@@ -306,8 +322,37 @@ docker compose up -d
 The frontend will be running on the VMs IP address defined in the env, on PORT 5173.
 ex: http://0.0.0.0:5173  (replace 0.0.0.0 with VM IP)
 
+## Automated Testing and Deployment
+Github Action tests included in this project support automated CI/CD workflow on pushes and PRs.
+### CI Pipeline
+The continuous integration pipeline triggers on pushes to the *main* and *dev* branches and pull requests on the *main* branch.
 
----
+Jobs:
+- Run all backend unit tests
+- Run all frontend unit tests
+- Run all integration tests
+- Run all E2E tests
+
+### CD Pipeline
+The continuous deployment pipeline triggers on successfully completion of the CI pipeline (see above).
+
+Jobs:
+- Deploy to Digital Ocean VM
+- Verify deployment
+
+### GitHub Secrets
+| variable name | contents |
+| --- | --- |
+| VM_HOST |*name of VM host* |
+| VM_USERNAME | *VM username* |
+| VM_PASSWORD | *VM password* |
+| MYSQL_USER | * |
+| MYSQL_PASSWORD | * |
+| MYSQL_DATABASE | * |
+| DB_PORT | * |
+| PORT | * |
+| HOST | * |
+* Refer to [Environmental Variables](#environment-variables)
 
 ## API Endpoints
 
