@@ -340,6 +340,20 @@ Jobs:
 - Deploy to Digital Ocean VM
 - Verify deployment
 
+### GitHub Secrets
+| variable name | contents |
+| --- | --- |
+| VM_HOST |*name of VM host* |
+| VM_USERNAME | *VM username* |
+| VM_PASSWORD | *VM password* |
+| MYSQL_USER | * |
+| MYSQL_PASSWORD | * |
+| MYSQL_DATABASE | * |
+| DB_PORT | * |
+| PORT | * |
+| HOST | * |
+* Refer to [Environmental Variables](#environment-variables)
+
 ## API Endpoints
 
 | Method | Endpoint                        | Description                         |
