@@ -2,6 +2,21 @@
 
 A reading tracker web application that allows users to search for books using the **Open Library API**, save them to their personal digital shelf, and manage their book collection.
 
+**Contents**
+1. [Team Members](#team-members)
+1. [Project Description](#project-description)
+1. [Tech Stack](#tech-stack)
+1. [Prerequisites](#prerequisites)
+1. [Environment Variables](#environment-variables)
+1. [Local Development Setup](#local-development-setup)
+1. [Testing Strategy](#testing-strategy)
+1. [Running the Application (Local)](#running-the-application-local)
+1. [Deployment Instructions (Ubuntu + Docker)](#deployment-instructions-ubuntu--docker)
+1. [Api Endpoints](#api-endpoints)
+1. [Useful Commands](#useful-commands)
+1. [Troubleshooting Tips](#troubleshooting-tips)
+1. [License](#license)
+
 ## Team Members
 
 **Sprint 1/2:**
