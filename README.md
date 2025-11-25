@@ -12,6 +12,7 @@ A reading tracker web application that allows users to search for books using th
 1. [Testing Strategy](#testing-strategy)
 1. [Running the Application (Local)](#running-the-application-local)
 1. [Deployment Instructions (Ubuntu + Docker)](#deployment-instructions-ubuntu--docker)
+1. [Automated Testing and Deployment](#automated-testing-and-deployment)
 1. [Api Endpoints](#api-endpoints)
 1. [Useful Commands](#useful-commands)
 1. [Troubleshooting Tips](#troubleshooting-tips)
@@ -321,8 +322,23 @@ docker compose up -d
 The frontend will be running on the VMs IP address defined in the env, on PORT 5173.
 ex: http://0.0.0.0:5173  (replace 0.0.0.0 with VM IP)
 
+## Automated Testing and Deployment
+Github Action tests included in this project support automated CI/CD workflow on pushes and PRs.
+### CI Pipeline
+The continuous integration pipeline triggers on pushes to the *main* and *dev* branches and pull requests on the *main* branch.
 
----
+Jobs:
+- Run all backend unit tests
+- Run all frontend unit tests
+- Run all integration tests
+- Run all E2E tests
+
+### CD Pipeline
+The continuous deployment pipeline triggers on successfully completion of the CI pipeline (see above).
+
+Jobs:
+- Deploy to Digital Ocean VM
+- Verify deployment
 
 ## API Endpoints
 
